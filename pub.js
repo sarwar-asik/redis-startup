@@ -23,6 +23,20 @@ app.get("/", (req, res) => {
   });
 });
 
+app.get("/publish", async (req, res) => {
+  const id = Math.floor(Math.random() * 10);
+
+  const data = {
+    id,
+    message: `message- ${id}`,
+  };
+  await publisher.publish("message", JSON.stringify(data));
+
+  res.send({
+    message:"Data published"
+  })
+});
+
 app.listen(3001, () => {
   console.log("publisher start on 30001");
 });
