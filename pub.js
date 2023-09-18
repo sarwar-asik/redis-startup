@@ -30,11 +30,13 @@ app.get("/publish", async (req, res) => {
     id,
     message: `message- ${id}`,
   };
+  console.log("publish data from pub.js",data);
   await publisher.publish("message", JSON.stringify(data));
 
   res.send({
-    message:"Data published"
-  })
+    message: "Data published",
+    data
+  });
 });
 
 app.listen(3001, () => {
